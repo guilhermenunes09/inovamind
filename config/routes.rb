@@ -6,4 +6,9 @@ Rails.application.routes.draw do
       get ':search_tag' => "quotes#show"
     end
   end
+
+  post 'auth/register', to: 'users#register'
+  post 'auth/login', to: 'users#login'
+  get 'test', to: 'users#test'
+  
 end

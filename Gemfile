@@ -33,6 +33,10 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'mongoid', '~> 6.1.0'
 gem 'active_model_serializers', '0.9.3'
+gem 'bcrypt', '~> 3.1.7'
+gem 'rack-cors'
+gem 'jwt'
+gem 'simple_command'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

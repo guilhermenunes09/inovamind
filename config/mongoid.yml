@@ -1,12 +1,12 @@
-production:
-  clients:
-    default:
-      uri: <%= ENV['MONGODB_URI'] %>
-    options:
-      skip_version_check: true
-    safe: true
+# production:
+#   clients:
+#     default:
+#       uri: <%= ENV['MONGODB_URI'] %>
+#     options:
+#       skip_version_check: true
+#     safe: true
 
-development:
+production:
   # Configure available database clients. (required)
   clients:
     # Defines the default client. (required)

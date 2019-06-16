@@ -1,4 +1,4 @@
-class Api::Quotes::QuotesController < Api::Quotes::ApiController
+class Api::Quotes::QuotesController < Api::ApiController
     def show
         # Obtém Tag a partir da URL api/quotes/:search_tag #
         search_tag = params[:search_tag]

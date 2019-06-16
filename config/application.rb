@@ -34,6 +34,10 @@ module InovaMind
         resource '*', :headers => :any, :methods => [:get, :post, :options]
       end
     end
+
+    #config.logger = Logger.new(STDOUT)
+    #config.logger = Log4r::Logger.new("Application Log")
+
     #autoloads lib folder during production
     config.eager_load_paths << Rails.root.join('lib')
 

@@ -30,7 +30,6 @@ class UsersController < ApplicationController
 
     def authenticate(email, password)
         command = AuthenticateUser.call(email, password)
-    
         if command.success? || session[:current_user]
           user = User.where(email: email).first
           session[:current_user] = user

@@ -12,7 +12,7 @@ class JsonWebToken
     
         def decode(token)
           #decodes the token to get user data (payload)
-          body = JWT.decode(token, ENV['SECRET_KEY_BASE'][0]
+          body = JWT.decode(token, ENV['SECRET_KEY_BASE'][0])
           HashWithIndifferentAccess.new body
     
         # raise custom error to be handled by custom handler

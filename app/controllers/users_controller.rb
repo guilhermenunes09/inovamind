@@ -35,7 +35,7 @@ class UsersController < ApplicationController
           session[:current_user] = user
           render json: {
             access_token: command.result,
-            message: 'Login Realizado, se estiver no browser acesse api/quotes/{palavra-chave}'
+            message: 'Login Realizado, se estiver no browser acesse https://inovamind.herokuapp.com/api/quotes/{palavra-chave}'
           }
         else
           render json: { error: command.errors }, status: :unauthorized

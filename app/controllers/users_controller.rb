@@ -37,10 +37,12 @@ class UsersController < ApplicationController
     def authenticate(email, password)
         command = AuthenticateUser.call(email, password)
     
-        if command.success?
+        if command.success? || session[:current_user]
+          user = User.where(email: email).first
+          session[:current_user] = user
           render json: {
             access_token: command.result,
-            message: 'Login Successful'
+            message: 'Login Realizado, se estiver no browser acesse api/quotes/{palavra-chave}'
           }
         else
           render json: { error: command.errors }, status: :unauthorized

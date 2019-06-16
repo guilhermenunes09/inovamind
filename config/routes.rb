@@ -7,8 +7,12 @@ Rails.application.routes.draw do
     end
   end
 
+
   post 'auth/register', to: 'users#register'
+  get 'login', to: 'sessions#new'
   post 'auth/login', to: 'users#login'
   get 'test', to: 'users#test'
+
+  root to: 'quotes#show'
   
 end

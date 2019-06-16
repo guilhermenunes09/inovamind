@@ -1,7 +1,6 @@
 # lib/json_web_token.rb
 class JsonWebToken
     # our secret key to encode our jwt
-    
       class << self
         def encode(payload, exp = 2.hours.from_now)
           # set token expiration time 

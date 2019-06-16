@@ -10,8 +10,12 @@ class Api::Quotes::QuotesController < Api::Quotes::ApiController
             json_data = Quote.search_data(search_tag)
             SearchCache.create(tag: search_tag) unless json_data.blank?
         end
-
-        render json: Quote.where(tags: search_tag), each_serializer: QuoteSerializer
+        quotes = Quote.where(tags: search_tag)
+        if(quotes.present?)
+            render json: quotes, each_serializer: QuoteSerializer
+        else
+            render json: { message: "Nenhuma citação encontrada com a palavra chave [#{search_tag}]." }, status: 209
+        end
 
     end
 end

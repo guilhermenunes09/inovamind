@@ -1,0 +1,13 @@
+Formulário
+
+<%= form_tag auth_login_path do |form| %>
+
+    <%= label_tag "E-mail" %>
+    <%= text_field_tag :email, "temp@email.com" , autofocus:true %>
+
+    <%= label_tag "Senha" %>
+    <%= text_field_tag :password %>
+
+    <%= button_tag "Obter Token" %>
+
+<% end %>

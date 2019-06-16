@@ -1,11 +1,3 @@
-production:
-  clients:
-    default:
-      uri: mongodb://heroku_4905c70r:1jkdenmndo6fs67u52vfhv1h5m@ds129031.mlab.com:29031/heroku_4905c70r
-    options:
-      skip_version_check: true
-    safe: true
-
 development:
   # Configure available database clients. (required)
   clients:
@@ -130,3 +122,11 @@ test:
         read:
           mode: :primary
         max_pool_size: 1
+
+production:
+  clients:
+    default:
+      uri: <%= ENV['MONGODB_URI'] || ENV['MONGO_URL'] %>
+      options:
+        # consistency: :strong
+        # identity_map_enabled: true

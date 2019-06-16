@@ -1,31 +1,25 @@
 class UsersController < ApplicationController
-    #skip_before_action :authenticate_request, only: [:login, :register]
     skip_before_action :verify_authenticity_token, only: [:login, :register]
     skip_before_action :authenticate_request, only: [:login, :register]
+    
     # POST /register
     def register
         @user = User.create(user_params)
         if @user.save
-            response = { message: 'User created successfully'}
+            response = { message: 'Usuário criado com sucesso!'}
             render json: response, status: :created 
         else
             render json: @user.errors, status: :bad
         end 
     end
 
+    # POST /login
+    # Ao logar passe um Header com key [Authorization] e um [Token] válido
     def login
         authenticate params[:email], params[:password]
     end
 
-    def test
-        render json: {
-            message: 'You have passed authentication and authorization test'
-        }
-     end
-
-
     private
-
     def user_params
         params.permit(
             :name,
@@ -48,4 +42,6 @@ class UsersController < ApplicationController
           render json: { error: command.errors }, status: :unauthorized
         end
     end
+
+
 end

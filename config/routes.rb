@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :api do
     namespace :quotes do
       resources :quotes
@@ -7,12 +6,11 @@ Rails.application.routes.draw do
     end
   end
 
-
   post 'auth/register', to: 'users#register'
-  get 'login', to: 'sessions#new'
-  post 'auth/login', to: 'users#login'
-  get 'test', to: 'users#test'
+  get 'login', to: 'sessions#new' # Login no Browser
+  post 'auth/login', to: 'users#login' # Login na API
 
   root to: 'quotes#show'
+
   
 end

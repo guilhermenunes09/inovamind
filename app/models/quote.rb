@@ -9,24 +9,29 @@ class Quote
   validates_uniqueness_of :quote, presence: true
 
   protected
-  def self.save_data (index, quote, author, author_about, tags)
-    quotedb = Quote.new
-    quotedb.quote = quote
-    quotedb.author = author
-    quotedb.author_about = author_about
-    quotedb.tags = tags.split(',')
+  
+  # 1. Acessa URL e obtém o documento por completo #
+  def self.search_data (search_tag)
+    require 'open-uri'
+    url = "http://quotes.toscrape.com/tag/#{search_tag}"
+
     begin
-        quotedb.save!
+        html = open(url)
+        json_data = process_data (html) # Filtrar dados necessários
     rescue => error
-        puts "Autor #{index} já existe"
+        puts error.inspect
     end
+
+    return json_data.to_json
   end
 
+  # 2. Filtra Html dos Dados #
   def self.process_data(html)
+    require 'nokogiri'
+    require 'json'
     doc = Nokogiri::HTML(html)
     quotes = doc.css("div.quote")
     json_data = []
-    puts "Debugging<<<<<<<<<<<<<<"
     quotes.each_with_index do |div, index|
         quote = div.css("span.text")[0].text,
         author = div.css("small.author").text,
@@ -45,20 +50,19 @@ class Quote
     return json_data
   end
 
-  def self.search_data (search_tag)
-    require 'open-uri'
-    require 'nokogiri'
-    require 'json'
-    
-    url = "http://quotes.toscrape.com/tag/#{search_tag}"
-
+  # 3. Salva Infos no banco de Dados #
+  def self.save_data (index, quote, author, author_about, tags)
+    quotedb = Quote.new
+    quotedb.quote = quote
+    quotedb.author = author
+    quotedb.author_about = author_about
+    quotedb.tags = tags.split(',') # Converte string com vírglas em Array
     begin
-        html = open(url)
-        json_data = process_data (html)
+        quotedb.save!
     rescue => error
-        puts error.inspect
+        puts "Autor #{index} já existe"
     end
-
-    return json_data.to_json
   end
+
+
 end

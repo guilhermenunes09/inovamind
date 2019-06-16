@@ -1,7 +1,7 @@
 production:
   clients:
     default:
-      uri: <%= ENV['MONGODB_URI'] %>
+      uri: mongodb://heroku_4905c70r:1jkdenmndo6fs67u52vfhv1h5m@ds129031.mlab.com:29031/heroku_4905c70r
     options:
       skip_version_check: true
     safe: true

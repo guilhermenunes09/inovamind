@@ -38,7 +38,7 @@ Se estiver utilizando outro método, adicione o Token gerado no header da sua re
 
 Método: **GET**
 Content-Type: **application/x-www-form-urlencoded**
-Authorization:** {Token}**
+Authorization: **{Token}**
 
 ## Funcionalidades
 
